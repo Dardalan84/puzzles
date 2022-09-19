@@ -1,0 +1,224 @@
+<html>
+<head>
+    <title>Puzzle Arcade</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/processing.js"></script> 
+</head>
+<body id="main">
+    <h1>
+      <script type="text/processing">
+        float t;
+        PImage space;
+        PImage neonarcade;
+        static final int lines = 10;
+        
+        void setup(){
+        size(1000,150);
+          space =loadImage("data/space.png");
+          neonarcade = loadImage("js/data/neonarcade.png");
+        
+         
+        }
+        void draw(){
+         image(space,0,0);
+         
+         strokeWeight(2); 
+         translate(width/2,height/2);
+         for(int i = 0; i < lines; i++){
+        //   stroke(255,200,0);
+         /*line(x(t+i)-500,y(t+i), x2(t+i)-500,y2(t+i));
+          stroke(240,120,0);
+          
+          line(x(t+i)-250,y(t+i), x2(t+i)-250,y2(t+i));
+          stroke(200,40,0);
+           line(x(t+i),y(t+i), x2(t+i),y2(t+i));*/
+         
+           stroke(200,60,40);
+         line(x(t+i)+250,y(t+i), x2(t+i)+250,y2(t+i));
+          // stroke(140,0,80);
+         // line(x(t+i)+500,y(t+i), x2(t+i)+500,y2(t+i));
+        
+         }
+         //point(x(t),y(t));
+          //point(x2(t),y2(t));
+        
+         t += .25;
+        // translate(-150,-height/2);
+        
+         image(neonarcade,-400,-height/2);
+         fill(#FF03B4);
+         textSize(100);
+         textAlign(CENTER);
+        
+        //text("Puzzle Arcade",0,35);
+        }
+        
+        float x(float t) {
+          return sin(t / -5) * 80 + sin(t/10) * sin(t);
+        }
+        
+        float y(float t) {
+          return cos(t / 10) * cos(t/-5) * 15 + cos(1);
+        }
+        
+        float x2(float t) {
+          return sin(t / 10) * 100 + sin(t/5) * 75;
+        }
+        
+        float y2(float t) {
+          return sin(t / 10) * 100 + sin(t/5) * 50 + cos(1);
+
+          x += 10;
+          y += 10;
+        }
+  
+      </script>
+          <canvas>yo</canvas>
+    
+    </h1>
+    <div class='menu-return'> <a href="unemterces.html">Back to the main room</a></div>
+    <div id="frame">
+<p> 
+
+<h2>Phreak Out</h2>
+<script type="text/processing">
+float ax;
+float ay;
+float bx;
+float by;
+int boxASize = 50;
+int boxBSize = 50;
+boolean overAbox = false;
+boolean overBbox = false;
+boolean lockedA = false;
+boolean lockedB = false;
+float axOffset = 0.0; 
+float ayOffset = 0.0; 
+float bxOffset = 0.0; 
+float byOffset = 0.0; 
+PImage bluebox;
+PImage voicemail;
+PImage phreakbground;
+
+void setup() {
+size(400,400);
+bluebox = loadImage("js/data/bluebox.png");
+voicemail = loadImage("js/data/voicemail.png");
+phreakbground = loadImage("js/data/phreakbground.png");
+ax = 200;
+ay = random(height);
+bx = 400;
+by = random(height);
+rectMode(RADIUS);  
+}
+
+void draw() { 
+background(0);
+imageMode(CORNER);
+image(phreakbground,0,0);
+
+// Test if the cursor is over the box 
+if (mouseX > bx-boxBSize && mouseX < bx+boxBSize && 
+mouseY > by-boxBSize && mouseY < by+boxBSize) {
+overBbox = true;  
+if(!lockedB) { 
+stroke(255); 
+fill(153);
+} 
+} else {
+stroke(153);
+fill(153);
+overBbox = false;
+}
+
+if (mouseX > ax-boxASize && mouseX < ax+boxASize && 
+mouseY > ay-boxASize && mouseY < ay+boxASize) {
+overAbox = true;  
+if(!lockedA) { 
+stroke(255); 
+fill(153);
+} 
+} else {
+stroke(153);
+fill(153);
+overAbox = false;
+}
+
+// Draw the box
+imageMode(CENTER);
+image(bluebox,bx, by);
+image(voicemail, ax, ay);
+}
+
+void mousePressed() {
+if(overBbox) { 
+lockedB = true; 
+fill(255, 255, 255);
+} else {
+lockedB = false;
+}
+bxOffset = mouseX-bx; 
+byOffset = mouseY-by; 
+
+if(overAbox) { 
+lockedA = true; 
+fill(255, 255, 255);
+} else {
+lockedA = false;
+}
+axOffset = mouseX-ax; 
+ayOffset = mouseY-ay; 
+
+}
+
+void mouseDragged() {
+if(lockedB) {
+bx = mouseX-bxOffset; 
+by = mouseY-byOffset; 
+
+}
+if(lockedA) {
+ax = mouseX-axOffset; 
+ay = mouseY-ayOffset; 
+
+}
+}
+
+void mouseReleased() {
+lockedA = false;
+lockedB = false;
+
+}
+</script>
+<canvas id="sketch">yo</canvas>
+<SCRIPT>
+function passWordb() {
+var testV = 1;
+var pass1 = prompt('____ Hz',' ');
+while (testV < 3) {
+if (!pass1)
+   history.go(-1);
+if (pass1.toLowerCase() == "2600") {
+    /* alert('You Got it Right!');*/
+    window.open('phreakwin.html');
+break;
+}
+testV+=1;
+var pass1 =
+prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+}
+if (pass1.toLowerCase()!="password" & testV ==3)
+  history.go(-1);
+return " ";
+}
+</SCRIPT>
+<CENTER>
+<FORM>
+<input type="button" value="Tune Your Box!" onClick="passWordb()">
+</FORM>
+</CENTER>
+
+</p>
+</div>
+</body>
+</html>

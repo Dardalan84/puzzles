@@ -1,0 +1,93 @@
+<html>
+<head>
+    <title>Puzzle Arcade</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/processing.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+
+    <script src="js/panels.js"></script>
+    <script src="js/p5.sound.js"></script>
+
+</head>
+<body id="main">
+    <h1>
+      <script type="text/processing">
+        float t;
+        PImage space;
+        PImage neonarcade;
+        static final int lines = 10;
+        
+        void setup(){
+        size(1000,150);
+          space =loadImage("data/space.png");
+          neonarcade = loadImage("js/data/neonarcade.png");
+        
+         
+        }
+        void draw(){
+         image(space,0,0);
+         
+         strokeWeight(2); 
+         translate(width/2,height/2);
+         for(int i = 0; i < lines; i++){
+        //   stroke(255,200,0);
+         /*line(x(t+i)-500,y(t+i), x2(t+i)-500,y2(t+i));
+          stroke(240,120,0);
+          
+          line(x(t+i)-250,y(t+i), x2(t+i)-250,y2(t+i));
+          stroke(200,40,0);
+           line(x(t+i),y(t+i), x2(t+i),y2(t+i));*/
+         
+           stroke(200,60,40);
+         line(x(t+i)+250,y(t+i), x2(t+i)+250,y2(t+i));
+          // stroke(140,0,80);
+         // line(x(t+i)+500,y(t+i), x2(t+i)+500,y2(t+i));
+        
+         }
+         //point(x(t),y(t));
+          //point(x2(t),y2(t));
+        
+         t += .25;
+        // translate(-150,-height/2);
+        
+         image(neonarcade,-400,-height/2);
+         fill(#FF03B4);
+         textSize(100);
+         textAlign(CENTER);
+        
+        //text("Puzzle Arcade",0,35);
+        }
+        
+        float x(float t) {
+          return sin(t / -5) * 80 + sin(t/10) * sin(t);
+        }
+        
+        float y(float t) {
+          return cos(t / 10) * cos(t/-5) * 15 + cos(1);
+        }
+        
+        float x2(float t) {
+          return sin(t / 10) * 100 + sin(t/5) * 75;
+        }
+        
+        float y2(float t) {
+          return sin(t / 10) * 100 + sin(t/5) * 50 + cos(1);
+
+          x += 10;
+          y += 10;
+        }
+  
+      </script>
+      <canvas>yo</canvas>
+
+    </h1>
+    <div class='menu-return'> <a href="unemterces.html">Back to the main room</a></div>
+
+     
+        
+              <h2>Number 15 Game</h2>
+              <div id="sketch-container"></div>    
+              <div id="solvedmessage"></div>  
+
+</body>
+</html>

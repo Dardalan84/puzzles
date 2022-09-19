@@ -1,0 +1,217 @@
+<html>
+<head>
+    <title>Puzzle Arcade</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/processing.js"></script> 
+</head>
+<body id="main">
+    <h1>
+      <script type="text/processing">
+        float t;
+        PImage space;
+        PImage neonarcade;
+        static final int lines = 10;
+        
+        void setup(){
+        size(1000,150);
+          space =loadImage("data/space.png");
+          neonarcade = loadImage("js/data/neonarcade.png");
+        
+         
+        }
+        void draw(){
+         image(space,0,0);
+         
+         strokeWeight(2); 
+         translate(width/2,height/2);
+         for(int i = 0; i < lines; i++){
+        //   stroke(255,200,0);
+         /*line(x(t+i)-500,y(t+i), x2(t+i)-500,y2(t+i));
+          stroke(240,120,0);
+          
+          line(x(t+i)-250,y(t+i), x2(t+i)-250,y2(t+i));
+          stroke(200,40,0);
+           line(x(t+i),y(t+i), x2(t+i),y2(t+i));*/
+         
+           stroke(200,60,40);
+         line(x(t+i)+250,y(t+i), x2(t+i)+250,y2(t+i));
+          // stroke(140,0,80);
+         // line(x(t+i)+500,y(t+i), x2(t+i)+500,y2(t+i));
+        
+         }
+         //point(x(t),y(t));
+          //point(x2(t),y2(t));
+        
+         t += .25;
+        // translate(-150,-height/2);
+        
+         image(neonarcade,-400,-height/2);
+         fill(#FF03B4);
+         textSize(100);
+         textAlign(CENTER);
+        
+        //text("Puzzle Arcade",0,35);
+        }
+        
+        float x(float t) {
+          return sin(t / -5) * 80 + sin(t/10) * sin(t);
+        }
+        
+        float y(float t) {
+          return cos(t / 10) * cos(t/-5) * 15 + cos(1);
+        }
+        
+        float x2(float t) {
+          return sin(t / 10) * 100 + sin(t/5) * 75;
+        }
+        
+        float y2(float t) {
+          return sin(t / 10) * 100 + sin(t/5) * 50 + cos(1);
+
+          x += 10;
+          y += 10;
+        }
+  
+      </script>
+      <canvas>yo</canvas>
+
+    </h1>
+    <div class='menu-return'> <a href="unemterces.html">Back to the main room</a></div>
+
+    <div id="frame">
+    <h2>Hack the Corporation</h2>
+    <script type="text/processing" id="puzzleframe">
+      PImage phone;
+      boolean clicked1 = false;
+      boolean clicked2 = false;
+      boolean clicked3 = false;
+      boolean clicked4 = false;
+      boolean clicked5 = false;
+      boolean clicked6 = false;
+      
+      void setup(){
+          size(600,600);
+          phone = loadImage("js/data/businessphone.png");
+          fill(240);
+          background(100,10,240);
+          textSize(18);
+         text("CLICK HERE TO ACCESS COMPANY PHONE", width/2-190,25);
+         fill(0);
+         textSize(12);
+        }
+      
+      void phoneState0() {
+        background(0);
+        image(phone,width/2,height/2);
+          String s = "Welcome! Navigate the phone network to reach the CEO. Don't get caught by security! Dial 0 to hang up";
+       text(s,250,170, 140,80);
+         clicked1 = false;
+         clicked2 = false;
+         clicked3 = false;
+         clicked4 = false;
+         clicked5 = false;
+         clicked6 = false;
+     }
+
+      void draw(){
+        imageMode(CENTER);
+      }
+      
+     
+      
+      void phoneState1() {
+        background(0);
+        fill(0);
+        image(phone,width/2,height/2);
+        String s = "Reception                    Office 101                   Please contact HR";
+        text(s,250,190, 140,60);
+      }
+      
+      void phoneStateWin() {
+        background(0,0,255);  
+        image(phone,width/2,height/2);
+        String s = "Executive Director           Office 500                   How'd you get here?";
+        text(s,250,190, 140,60);  
+          clicked1 = false;
+          clicked2 = false;
+          clicked3 = false;
+          clicked4 = false;
+          clicked5 = false;
+          clicked6 = false;
+      }
+      
+      void phoneState2() {
+        background(0);  
+        image(phone,width/2,height/2);
+        String s = "Human Resources    Office 240                   Contact Marketing";
+        text(s,250,190, 140,60);
+      }
+      
+      void phoneState3(){
+        background(0);  
+        image(phone,width/2,height/2);
+        String s = "Marketing Director           Office 303                    Call R&D";
+        text(s,250,190, 140,60); 
+      }
+      
+      void phoneState4(){
+        background(0);  
+        image(phone,width/2,height/2);
+        String s = "Research and Dev   Office 409                    Take it to Leadership";
+        text(s,250,190, 140,60); 
+      }
+      
+      void phoneStateDie(){
+        background(255,0,0);  
+        image(phone,width/2,height/2);
+        String s = "Security Director            Office 131                   Busted! Hang up";
+        text(s,250,190, 140,60); 
+          clicked1 = false;
+          clicked2 = false;
+          clicked3 = false;
+          clicked4 = false;
+          clicked5 = false;
+          clicked6 = false;
+      }
+      
+      void mousePressed(){
+        if((mouseX > 425 && mouseX < 495 && mouseY > 165 && mouseY < 195)&& (clicked1==false) ) { //actual values may differ
+           phoneState1();
+           clicked1 = true;
+      
+      } else if((mouseX > 425 && mouseX < 495 && mouseY > 205 && mouseY < 235)&& (clicked4 ==true)){
+          phoneStateWin();
+          
+      } else if((mouseX > 425 && mouseX < 495 && mouseY > 245 && mouseY < 275)&& (clicked1==true)){
+          phoneState2();
+          clicked2 = true;
+      
+      } else if((mouseX > 425 && mouseX < 495 && mouseY > 285 && mouseY < 315) && (clicked3 == true)){
+          phoneState4();
+          clicked4 = true;
+      
+      } else if(mouseX > 425 && mouseX < 495 && mouseY > 325 && mouseY < 355){
+          phoneStateDie();
+      
+      } else if((mouseX > 425 && mouseX < 495 && mouseY > 365 && mouseY < 395)&& (clicked2 ==true)){
+          phoneState3();
+          clicked3 = true;
+      
+      } else if (mouseX > 310 && mouseX < 340 && mouseY > 380 && mouseY < 420){
+          phoneState0();
+        } else if (mouseX > 10 && mouseX < 590 && mouseY > 10 && mouseY < 40){
+          phoneState0();
+        } 
+      }
+      
+      void keyPressed(){
+        if(key == '0') {
+          phoneState0();
+        }
+      }
+      
+  </script>
+    <canvas id="sketch">yo</canvas>
+
+    </div>
+</body>
